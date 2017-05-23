@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                 http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                 http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+         ">
+
+	<service ref="commandContextFactory"
+		interface="com.mebitech.core.api.service.ICommandContextFactory" />
+	<bean id="commandContextFactory"
+		class="com.mebitech.service.CommandContextFactoryImpl" />
+
+	<service ref="commandResultFactory"
+		interface="com.mebitech.core.api.service.ICommandResultFactory" />
+	<bean id="commandResultFactory"
+		class="com.mebitech.service.CommandResultFactoryImpl" />
+
+	<service ref="restRequestFactory"
+		interface="com.mebitech.core.api.rest.IRequestFactory" />
+	<bean id="restRequestFactory" class="com.mebitech.service.RequestFactoryImpl" />
+
+	<service ref="restResponseFactory"
+		interface="com.mebitech.core.api.rest.IResponseFactory" />
+	<bean id="restResponseFactory" class="com.mebitech.service.ResponseFactoryImpl" />
+
+</blueprint>

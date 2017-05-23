@@ -1,0 +1,26 @@
+<menulist>
+    <menu>
+        <id>001-0001</id>
+        <name>Kullanıcı Yönetimi</name>
+        <module>
+            <id>001</id>
+            <name>Yönetim</name>
+        </module>
+    </menu>
+    <menu>
+        <id>001-0002</id>
+        <name>Rol Yönetimi</name>
+        <module>
+            <id>001</id>
+            <name>Yönetim</name>
+        </module>
+    </menu>
+    <menu>
+        <id>001-0003</id>
+        <name>İzin Yönetimi</name>
+        <module>
+            <id>001</id>
+            <name>Yönetim</name>
+        </module>
+    </menu>
+</menulist>

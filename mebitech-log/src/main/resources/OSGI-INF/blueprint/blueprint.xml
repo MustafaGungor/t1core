@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+	<service ref="operationLogService"
+		interface="com.mebitech.core.api.log.IOperationLogService" />
+	<bean id="operationLogService" class="com.mebitech.log.OperationLogServiceImpl">
+		<property name="logDao" ref="logDao" />
+		<property name="entityFactory" ref="entityFactory" />
+		<property name="responseFactory" ref="responseFactory" />
+	</bean>
+
+	<reference id="logDao"
+		interface="com.mebitech.core.api.persistence.dao.IOperationLogDao" />
+	<reference id="entityFactory"
+		interface="com.mebitech.core.api.persistence.factories.IEntityFactory" />
+
+	<reference id="responseFactory"
+			   interface="com.mebitech.core.api.rest.IResponseFactory" />
+</blueprint>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="
+                 http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                 http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+         ">
+
+    <service ref="ilRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IIlRequestProcessor"/>
+    <bean id="ilRequestProcessor"
+          class="com.mebitech.rest.IlRequestProcessorImpl">
+        <property name="ilDao" ref="ilDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="jobMasterRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IJobMasterRequestProcessor"/>
+    <bean id="jobMasterRequestProcessor" class="com.mebitech.rest.JobMasterRequestProcessorImpl">
+        <property name="jobMasterDao" ref="jobMasterDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="ilceRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IIlceRequestProcessor"/>
+    <bean id="ilceRequestProcessor"
+          class="com.mebitech.rest.IlceRequestProcessorImpl">
+        <property name="ilceDao" ref="ilceDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="kimlikProcessor"
+             interface="com.mebitech.core.api.rest.processors.IKimlikRequestProcessor"/>
+    <bean id="kimlikProcessor"
+          class="com.mebitech.rest.KimlikRequestProcessorImpl">
+        <property name="kimlikDao" ref="kimlikDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="ulkeRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IUlkeRequestProcessor"/>
+    <bean id="ulkeRequestProcessor"
+          class="com.mebitech.rest.UlkeRequestProcessorImpl">
+        <property name="ulkeDao" ref="ulkeDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="userRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IUserRequestProcessor"/>
+    <bean id="userRequestProcessor"
+          class="com.mebitech.rest.UserRequestProcessorImpl">
+        <property name="userDao" ref="userDao"/>
+        <property name="groupDao" ref="groupDao"/>
+        <property name="userlevelDao" ref="userlevelDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+        <property name="configService" ref="configService"/>
+        <property name="permissionDao" ref="permissionDao"/>
+        <property name="levelDao" ref="levelDao"/>
+    </bean>
+
+    <service ref="roleRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IRoleRequestProcessor"/>
+    <bean id="roleRequestProcessor"
+          class="com.mebitech.rest.RoleRequestProcessorImpl">
+        <property name="roleDao" ref="roleDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <service ref="groupRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IGroupRequestProcessor"/>
+    <bean id="groupRequestProcessor"
+          class="com.mebitech.rest.GroupRequestProcessorImpl">
+        <property name="groupDao" ref="groupDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+
+    <!-- Service Info Add -->
+    <service ref="userlevelRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IUserLevelRequestProcessor"/>
+    <bean id="userlevelRequestProcessor" class="com.mebitech.rest.UserLevelRequestProcessorImpl">
+        <property name="userlevelDao" ref="userlevelDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="levelDao" ref="levelDao"/>
+        <property name="groupDao" ref="groupDao"/>
+    </bean>
+
+    <reference id="userlevelDao" interface="com.mebitech.core.api.persistence.dao.IUserLevelDao"/>
+
+    <service ref="levelRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.ILevelRequestProcessor"/>
+    <bean id="levelRequestProcessor" class="com.mebitech.rest.LevelRequestProcessorImpl">
+        <property name="levelDao" ref="levelDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+    <reference id="levelDao" interface="com.mebitech.core.api.persistence.dao.ILevelDao"/>
+    <service ref="permissionRequestProcessor"
+             interface="com.mebitech.core.api.rest.processors.IPermissionRequestProcessor"/>
+    <bean id="permissionRequestProcessor" class="com.mebitech.rest.PermissionRequestProcessorImpl">
+        <property name="userlevelDao" ref="userlevelDao"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="permissionDao" ref="permissionDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+        <property name="configService" ref="configService"/>
+        <property name="groupDao" ref="groupDao"/>
+        <property name="cacheService" ref="cacheService"/>
+    </bean>
+
+    <reference id="permissionDao" interface="com.mebitech.core.api.persistence.dao.IPermissionDao"/>
+
+    <service ref="menuRequestProcessor" interface="com.mebitech.core.api.rest.processors.IMenuRequestProcessor"/>
+    <bean id="menuRequestProcessor" class="com.mebitech.rest.MenuRequestProcessorImpl">
+        <property name="menuDao" ref="menuDao"/>
+        <property name="responseFactory" ref="responseFactory"/>
+    </bean>
+    <reference id="menuDao" interface="com.mebitech.core.api.persistence.dao.IMenuDao"/>
+
+    <reference id="jobMasterDao"
+               interface="com.mebitech.core.api.persistence.dao.IJobMasterDao"/>
+    <reference id="groupDao"
+               interface="com.mebitech.core.api.persistence.dao.IGroupDao"/>
+    <reference id="ilDao"
+               interface="com.mebitech.core.api.persistence.dao.IIlDao"/>
+    <reference id="ilceDao"
+               interface="com.mebitech.core.api.persistence.dao.IIlceDao"/>
+    <reference id="ulkeDao"
+               interface="com.mebitech.core.api.persistence.dao.IUlkeDao"/>
+    <reference id="kimlikDao"
+               interface="com.mebitech.core.api.persistence.dao.IKimlikDao"/>
+    <reference id="roleDao"
+               interface="com.mebitech.core.api.persistence.dao.IRoleDao"/>
+    <reference id="userDao"
+               interface="com.mebitech.core.api.persistence.dao.IUserDao"/>
+    <reference id="requestFactory"
+               interface="com.mebitech.core.api.rest.IRequestFactory"/>
+    <reference id="responseFactory"
+               interface="com.mebitech.core.api.rest.IResponseFactory"/>
+    <reference id="configService"
+               interface="com.mebitech.core.api.configuration.IConfigurationService"/>
+    <reference id="cacheService"
+               interface="com.mebitech.core.api.caching.ICacheService"/>
+    <reference id="authService"
+               interface="com.mebitech.core.api.authorization.IAuthService"/>
+    <reference id="ldapService"
+               interface="com.mebitech.core.api.ldap.ILDAPService"/>
+    <reference id="entityFactory"
+               interface="com.mebitech.core.api.persistence.factories.IEntityFactory"/>
+    <reference id="eventAdmin" interface="org.osgi.service.event.EventAdmin"/>
+
+</blueprint>

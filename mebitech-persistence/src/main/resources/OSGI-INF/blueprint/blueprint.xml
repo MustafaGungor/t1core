@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
+           xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd"
+           default-activation="eager">
+
+    <service ref="operationLogDao"
+             interface="com.mebitech.core.api.persistence.dao.IOperationLogDao"/>
+    <bean id="operationLogDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.OperationLogDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+
+    <service ref="jobMasterDao" interface="com.mebitech.core.api.persistence.dao.IJobMasterDao"/>
+    <bean id="jobMasterDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.JobMasterDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+
+    <service ref="ilDao"
+             interface="com.mebitech.core.api.persistence.dao.IIlDao"/>
+    <bean id="ilDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.IlDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="ilceDao"
+             interface="com.mebitech.core.api.persistence.dao.IIlceDao"/>
+    <bean id="ilceDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.IlceDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="kimlikDao"
+             interface="com.mebitech.core.api.persistence.dao.IKimlikDao"/>
+    <bean id="kimlikDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.KimlikDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="ulkeDao"
+             interface="com.mebitech.core.api.persistence.dao.IUlkeDao"/>
+    <bean id="ulkeDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.UlkeDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="userDao"
+             interface="com.mebitech.core.api.persistence.dao.IUserDao"/>
+    <bean id="userDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.UserDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="roleDao"
+             interface="com.mebitech.core.api.persistence.dao.IRoleDao"/>
+    <bean id="roleDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.RoleDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="groupDao"
+             interface="com.mebitech.core.api.persistence.dao.IGroupDao"/>
+    <bean id="groupDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.GroupDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <service ref="entityFactory"
+             interface="com.mebitech.core.api.persistence.factories.IEntityFactory"/>
+    <bean id="entityFactory" class="com.mebitech.persistence.factories.EntityFactoryImpl"/>
+
+    <service ref="dbService"
+             interface="com.mebitech.core.api.persistence.IDbService"/>
+    <bean id="dbService"
+          class="com.mebitech.persistence.DbServiceImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <!-- Service Info Add -->
+    <service ref="UserLevelDao" interface="com.mebitech.core.api.persistence.dao.IUserLevelDao"/>
+    <bean id="UserLevelDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.UserLevelDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+    <service ref="LevelDao" interface="com.mebitech.core.api.persistence.dao.ILevelDao"/>
+    <bean id="LevelDao" init-method="init" destroy-method="destroy" class="com.mebitech.persistence.dao.LevelDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+    <service ref="PermissionDao" interface="com.mebitech.core.api.persistence.dao.IPermissionDao"/>
+    <bean id="PermissionDao" init-method="init" destroy-method="destroy"
+          class="com.mebitech.persistence.dao.PermissionDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+    <service ref="MenuDao" interface="com.mebitech.core.api.persistence.dao.IMenuDao"/>
+    <bean id="MenuDao" init-method="init" destroy-method="destroy" class="com.mebitech.persistence.dao.MenuDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+        <jpa:context property="entityManager" unitname="e_bilet"/>
+    </bean>
+
+    <reference id="resultFactory"
+               interface="com.mebitech.core.api.service.ICommandResultFactory"/>
+    <reference id="configurationService"
+               interface="com.mebitech.core.api.configuration.IConfigurationService"/>
+
+</blueprint>
